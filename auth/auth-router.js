@@ -5,13 +5,17 @@ const jwt = require('jsonwebtoken');
 const Users = require('./auth-model.js');
 const secrets = require('../api/secrets.js');
 
-router.get("/", async (req, res, next) => {
-	try {
-		res.json(await Users.find())
-	} catch(err) {
-		next(err)
-	}
-})
+// router.get("/", async (req, res, next) => {
+// 	try {
+// 		res.json(await Users.find())
+// 	} catch(err) {
+// 		next(err)
+// 	}
+// })
+
+router.get("/", (req, res) => {
+  res.status(200).json({ api: "working", dbenv: process.env.DB_ENV });
+});
 
 router.post('/register', (req, res) => {
   let user = req.body;
